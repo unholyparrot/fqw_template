@@ -1,0 +1,235 @@
+%%% Преамбула %%%
+
+\usepackage{fontspec} % XeTeX
+\usepackage{xunicode} % Unicode для XeTeX
+\usepackage{xltxtra}  % Верхние и нижние индексы
+\usepackage{pdfpages} % Вставка PDF
+
+\usepackage{listings} % Оформление исходного кода
+\lstset{
+    basicstyle=\small\ttfamily, % Размер и тип шрифта
+    breaklines=true,            % Перенос строк
+    tabsize=2,                  % Размер табуляции
+    frame=single,               % Рамка
+    literate={--}{{-{}-}}2,     % Корректно отображать двойной дефис
+    literate={---}{{-{}-{}-}}3  % Корректно отображать тройной дефис
+}
+
+% Шрифты, xelatex
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Times New Roman} % Нормоконтроллеры хотят именно его
+\newfontfamily\cyrillicfont{Times New Roman}
+\setmonofont{FreeMono} % Моноширинный шрифт для оформления кода
+
+% Формулы
+\usepackage{mathtools} % Не совместим с amsmath
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\setmathfont{XITS Math}             % Шрифт для формул: https://github.com/khaledhosny/xits-math
+\numberwithin{equation}{section}    % Формула вида секция.номер
+
+% Русский язык
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+
+% Абзацы и списки
+\usepackage{enumerate}   % Тонкая настройка списков
+\usepackage{indentfirst} % Красная строка после заголовка
+\usepackage{float}       % Расширенное управление плавающими объектами
+\usepackage{multirow}    % Сложные таблицы
+
+% Пути к каталогам с изображениями
+\usepackage{graphicx} % Вставка картинок и дополнений
+\graphicspath{{img/}}
+
+% Формат подрисуночных записей
+\usepackage{chngcntr}
+
+% Сбрасываем счетчик таблиц и рисунков в каждой новой главе
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
+% Гиперссылки
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks, urlcolor={black}, % Все ссылки черного цвета, кликабельные
+    linkcolor={black}, citecolor={black}, filecolor={black},
+    pdfauthor={Иван Чудинов},
+    pdftitle={Разработка модели артериального тромбоза на основе гидрогеля}
+}
+
+% Оформление библиографии и подрисуночных записей через точку
+\makeatletter
+\renewcommand*{\@biblabel}[1]{\hfill#1.}
+\renewcommand*\l@section{\@dottedtocline{1}{1em}{1em}}
+%%% Здесь может начать бухтеть и давать предупреждения, пока не найдет в тексте хотя бы один рисунок и/или хотя бы одну таблицу. Если это бесит, то закомментируй. 
+\renewcommand{\thefigure}{\thesection.\arabic{figure}} % Формат рисунка секция.номер
+\renewcommand{\thetable}{\thesection.\arabic{table}}   % Формат таблицы секция.номер
+\def\redeflsection{\def\l@section{\@dottedtocline{1}{0em}{10em}}}
+\makeatother
+
+\renewcommand{\baselinestretch}{1.4} % Полуторный межстрочный интервал
+\parindent 1.27cm % Абзацный отступ
+
+\sloppy             % Избавляемся от переполнений
+\hyphenpenalty=1000 % Частота переносов
+\clubpenalty=10000  % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000 % Запрещаем разрыв страницы после последней строки абзаца
+
+% Отступы у страниц
+\usepackage[left=3cm,right=1.5cm,bottom=2cm,top=2cm]{geometry}
+
+% Списки
+\usepackage{enumitem}
+\setlist[enumerate,itemize]{leftmargin=12.7mm} % Отступы в списках
+
+\makeatletter
+    \AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
+\makeatother
+\setlist{nolistsep}                           % Нет отступов между пунктами списка
+\renewcommand{\labelitemi}{--}                % Маркер списка --
+\renewcommand{\labelenumi}{\asbuk{enumi})}    % Список второго уровня
+\renewcommand{\labelenumii}{\arabic{enumii})} % Список третьего уровня
+
+% Содержание
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth}\MakeTextUppercase} % СОДЕРЖАНИЕ
+\renewcommand{\cftsecfont}{\hspace{0pt}}            % Имена секций в содержании не жирным шрифтом
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}} % Точки для секций в содержании
+\renewcommand\cftsecpagefont{\mdseries}             % Номера страниц не жирные
+\setcounter{tocdepth}{3}                            % Глубина оглавления, до subsubsection
+
+% Список иллюстративного материала
+\renewcommand{\cftloftitlefont}{\hspace{0.17\textwidth}\MakeTextUppercase}
+\renewcommand{\cftfigfont}{Рисунок }
+\addto\captionsrussian{\renewcommand\listfigurename{Список иллюстративного материала}}
+
+% Список табличного материала
+\renewcommand{\cftlottitlefont}{\hspace{0.2\textwidth}\MakeTextUppercase}
+\renewcommand{\cfttabfont}{Таблица }
+\addto\captionsrussian{\renewcommand\listtablename{Список табличного материала}}
+
+% Нумерация страниц посередине снизу
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\textrm{\thepage}}
+\fancyheadoffset{0mm}
+\fancyfootoffset{0mm}
+\setlength{\headheight}{17pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \cfoot{\textrm{\thepage}}
+}
+
+% Формат подрисуночных надписей
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
+\captionsetup[figure]{justification=centering, labelsep=defffis, format=plain} % Подпись рисунка по центру
+
+\captionsetup[table]{justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок}} % Имя фигуры
+
+% Пользовательские функции
+\newcommand{\addimg}[4]{ % Добавление одного рисунка
+    \begin{figure}
+        \centering
+        \includegraphics[width=#2\linewidth]{#1}
+        \caption{#3} \label{#4}
+    \end{figure}
+}
+\newcommand{\addimghere}[4]{ % Добавить рисунок непосредственно в это место
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#2\linewidth]{#1}
+        \caption{#3} \label{#4}
+    \end{figure}
+}
+\newcommand{\addtwoimghere}[6]{ % Вставка двух рисунков
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#3\linewidth]{#1}
+        \hfill
+        \includegraphics[width=#4\linewidth]{#2}
+        \caption{#5} \label{#6}
+    \end{figure}
+}
+
+\usepackage{wasysym} % Пришлось добавить для символов из статьи
+\usepackage{placeins} % Для FloatBarrier
+
+% Заголовки секций в оглавлении в верхнем регистре
+\usepackage{textcase}
+\makeatletter
+\let\oldcontentsline\contentsline
+\def\contentsline#1#2{
+    \expandafter\ifx\csname l@#1\endcsname\l@section
+        \expandafter\@firstoftwo
+    \else
+        \expandafter\@secondoftwo
+    \fi
+    {\oldcontentsline{#1}{\MakeTextUppercase{#2}}}
+    {\oldcontentsline{#1}{#2}}
+}
+\makeatother
+
+% Оформление заголовков
+\usepackage[compact,explicit]{titlesec}
+\titleformat{\section}{}{}{12.5mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}\vspace{1.5em}}
+\titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\thesubsection\quad#1\vspace{1em}}
+\titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1\vspace{1em}}
+\titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
+
+% Секции без номеров (введение, заключение...), вместо section*{}
+\newcommand{\anonsection}[1]{
+    \phantomsection % Корректный переход по ссылкам в содержании
+    \paragraph{\centerline{{#1}}\vspace{1em}}
+    \addcontentsline{toc}{section}{#1}
+}
+
+% Секция для аннотации (она не включается в содержание)
+\newcommand{\annotation}[1]{
+    \paragraph{\centerline{{#1}}\vspace{1em}}
+}
+
+% Секция для списка иллюстративного материала
+\newcommand{\lof}{
+    \phantomsection
+    \listoffigures
+    \addcontentsline{toc}{section}{\listfigurename}
+}
+
+% Секция для списка табличного материала
+\newcommand{\lot}{
+    \phantomsection
+    \listoftables
+    \addcontentsline{toc}{section}{\listtablename}
+}
+
+% Секции для приложений
+\newcommand{\appsection}[1]{
+    \phantomsection
+    \paragraph{\centerline{{#1}}}
+    \addcontentsline{toc}{section}{{#1}}
+}
+
+% Библиография: отступы и межстрочный интервал
+\makeatletter
+\renewenvironment{thebibliography}[1]
+    {\section*{\refname}
+        \list{\@biblabel{\@arabic\c@enumiv}}
+           {\settowidth\labelwidth{\@biblabel{#1}}
+            \leftmargin\labelsep
+            \itemindent 16.7mm
+            \@openbib@code
+            \usecounter{enumiv}
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}
+        }
+        \setlength{\itemsep}{0pt}
+    }
+\makeatother
+
+\usepackage{lastpage} % Подсчет количества страниц
+\setcounter{page}{1}  % Начало нумерации страниц
