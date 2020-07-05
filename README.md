@@ -28,15 +28,32 @@ pattern
  ┗ references.bib
 ```
 
-Пример готового файла --- _main.pdf_, постарался включить туда основные используемые функции.
+Пример готового файла -- _main.pdf_, постарался включить туда основные используемые функции.
 
 ## Держу в курсе
 
 Здесь несколько советов, которые могут облегчить процесс оформления работы. В файлах есть комментарии, но некоторые из них я хочу вынести сюда.
 
-### Выбор компилятора
+### Создание проекта и выбор компилятора
 
-Обязательно меняем тип компилятора с __pdfLaTeX__ на __XeLaTeX__. Иначе просто ничего не скомпилируется, а также будут ошибки при загрузке работы в личный кабинет.
+Скачиваем zip-архив, загружаем в [Overleaf](http://overleaf.com/).
+
+![Загрузка архива и создание проекта](https://github.com/unholyparrot/furry-memory/blob/master/other/upload.png)
+
+Сразу появится большое количество ошибок. 
+
+![Ничего не компилируется](https://github.com/unholyparrot/furry-memory/blob/master/other/errors.png)
+
+Чтобы исправить эту ошибку, меняем тип компилятора с __pdfLaTeX__ на __XeLaTeX__. Это также избавит от ошибок при загрузке работы в личный кабинет.
+
+![Ничего не компилируется](https://github.com/unholyparrot/furry-memory/blob/master/other/errors.png)
+
+Тип компилятора можно поменять в меню, там же можно включить проверку правописания. 
+
+![Расположение меню](https://github.com/unholyparrot/furry-memory/blob/master/other/comp-type-1.png)
+![Замена компилятора](https://github.com/unholyparrot/furry-memory/blob/master/other/comp-type-2.png)
+
+После этого компиляция должна пройти без ошибок. Можно удалить лишние файлы и директории из проекта -- _main.pdf_, _README.md_, а также лишние картинки, приложения и директорию _other_. 
 
 ### Использование пакетов
 
@@ -52,9 +69,21 @@ pattern
 
 ### Ссылки на литературу
 
-Используется BibTeX, стиль __ugost2008l__. В файл _references.bib_ добавляются цитируемые работы. Для этого используем [Академию Google](https://scholar.google.com/), ищем нужную статью.
+Используется BibTeX, стиль __ugost2008l__. В файл _references.bib_ добавляются цитируемые работы. Для этого используем [Академию Google](https://scholar.google.com/), ищем нужную статью. Нажимаем на цитирование.
 
-Если цитируем русскую литературу, то обязательно добавляем к скопированному `language={russian}`, чтобы получить корректный формат цитирования.
+![Расположение кнопки цитирования](https://github.com/unholyparrot/furry-memory/blob/master/other/lit-example-1.png)
+
+Далее выбираем цитирование для BibTeX.
+
+![Выбираем способ цитирования](https://github.com/unholyparrot/furry-memory/blob/master/other/lit-example-2.png)
+
+Копируем полученный текст, вставляем в _references.bib_. 
+
+![Образец формата цитирования](https://github.com/unholyparrot/furry-memory/blob/master/other/lit-example-3.png)
+
+Если цитируем русскую литературу, то обязательно добавляем к скопированному `language={russian}`, чтобы получить корректный формат цитирования. Итого должно выглядеть примерно так. 
+
+![Добавлен язык литературы](https://github.com/unholyparrot/furry-memory/blob/master/other/lit-example-4.png)
 
 ### Мультикурсор
 
