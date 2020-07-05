@@ -44,11 +44,7 @@ pattern
 
 ![Ничего не компилируется](https://github.com/unholyparrot/furry-memory/blob/master/other/errors.png)
 
-Чтобы исправить эту ошибку, меняем тип компилятора с __pdfLaTeX__ на __XeLaTeX__. Это также избавит от ошибок при загрузке работы в личный кабинет.
-
-![Ничего не компилируется](https://github.com/unholyparrot/furry-memory/blob/master/other/errors.png)
-
-Тип компилятора можно поменять в меню, там же можно включить проверку правописания. 
+Чтобы исправить эту ошибку, меняем тип компилятора с __pdfLaTeX__ на __XeLaTeX__. Это также избавит от ошибок при загрузке работы в личный кабинет. Тип компилятора можно поменять в меню, там же можно включить проверку правописания. 
 
 ![Расположение меню](https://github.com/unholyparrot/furry-memory/blob/master/other/comp-type-1.png)
 ![Замена компилятора](https://github.com/unholyparrot/furry-memory/blob/master/other/comp-type-2.png)
