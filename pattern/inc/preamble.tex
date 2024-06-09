@@ -1,5 +1,7 @@
 %%% Преамбула %%%
 
+\usepackage[fontsize=14]{fontsize}
+
 \usepackage{fontspec} % XeTeX
 \usepackage{xunicode} % Unicode для XeTeX
 \usepackage{xltxtra}  % Верхние и нижние индексы
@@ -26,6 +28,31 @@
 \usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 \setmathfont{XITS Math}             % Шрифт для формул: https://github.com/khaledhosny/xits-math
 \numberwithin{equation}{section}    % Формула вида секция.номер
+
+% Дерево директорий
+\usepackage{forest}
+\forestset{
+  default preamble={
+    for tree={
+        grow'=0,
+        child anchor=west,
+        parent anchor=south,
+        anchor=west,
+        calign=first,
+        edge path={
+          \noexpand\path [draw, \forestoption{edge}]
+          (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+        },
+        before typesetting nodes={
+          if n=1
+            {insert before={[,phantom]}}
+            {}
+        },
+        fit=band,
+        before computing xy={l=15pt},
+      }
+  }
+}
 
 % Русский язык
 \usepackage{polyglossia}
@@ -186,6 +213,11 @@
     \phantomsection % Корректный переход по ссылкам в содержании
     \paragraph{\centerline{{#1}}\vspace{1em}}
     \addcontentsline{toc}{section}{#1}
+}
+
+% Сабсекции без номеров, вместо subsection*{}
+\newcommand{\anonsubsection}[1]{
+    \vspace{1em}
 }
 
 % Секция для аннотации (она не включается в содержание)
