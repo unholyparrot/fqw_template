@@ -87,7 +87,7 @@
 
 % Оформление библиографии и подрисуночных записей через точку
 \makeatletter
-\renewcommand*{\@biblabel}[1]{\hfill#1.}
+%\renewcommand*{\@biblabel}[1]{\hfill#1.}
 \renewcommand*\l@section{\@dottedtocline{1}{1em}{1em}}
 %%% Здесь может начать бухтеть и давать предупреждения, пока не найдет в тексте хотя бы один рисунок и/или хотя бы одну таблицу. Если это бесит, то закомментируй. 
 \renewcommand{\thefigure}{\thesection.\arabic{figure}} % Формат рисунка секция.номер
@@ -263,6 +263,7 @@
         \setlength{\itemsep}{0pt}
     }
 \makeatother
+\usepackage[noadjust]{cite}
 
 \usepackage{lastpage} % Подсчет количества страниц
 \setcounter{page}{1}  % Начало нумерации страниц
